@@ -239,6 +239,12 @@ public class ModRegistry {
             "d0e1f2a3-b4c5-4d94-8512-0abcdef01240"
     );
 
+    public static final DeferredHolder<Attribute, Attribute> SPELL_RESISTANCE = PerkAttributes.registerAttribute(
+            "sauce.perk.spell_resistance",
+            (id) -> new PercentageAttribute(id, 0.0, -100.0, 1.0).setSyncable(true),
+            "d0e1f2a3-b4c5-4d94-8512-0abcdef01241"
+    );
+
     public static final DeferredHolder<Attribute, Attribute> MANA_DISCOUNT = PerkAttributes.registerAttribute(
             "sauce.perk.mana_discount",
             (id) -> new RangedAttribute(id, 0.0, -1000000, 1000000).setSyncable(true),
