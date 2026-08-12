@@ -13,6 +13,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.neoforged.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -80,11 +81,17 @@ public class GlyphEffectUtil {
      * Returns a set of all filters in the spell, starting at the given index.
      */
     public static Set<IFilter> getFilters(List<AbstractSpellPart> recipe, int index) {
+        boolean controle = ModList.get().isLoaded("ars_controle");
         Set<IFilter> list = new HashSet<>();
-        for (AbstractSpellPart glyph : recipe.subList(index, recipe.size())) {
+        List<AbstractSpellPart> subList = recipe.subList(index, recipe.size());
+        for (int i = 0; i < subList.size(); i++) {
+            AbstractSpellPart glyph = subList.get(i);
             if (glyph instanceof AbstractCastMethod) continue;
             if (glyph instanceof IFilter filter) {
                 list.add(filter);
+                if (controle) {
+                    i = ControleCompat.checkAdaptiveFilters(subList, i, filter);
+                }
             } else if (glyph instanceof AbstractEffect) break;
         }
         return list;

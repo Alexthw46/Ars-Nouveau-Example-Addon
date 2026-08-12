@@ -171,6 +171,8 @@ dependencies {
     compileOnly("com.alexthw.ars_elemental:ars_elemental-${minecraft_version}:${elemental_version}") { transitive = false }
     localRuntime("com.alexthw.ars_elemental:ars_elemental-${minecraft_version}:${elemental_version}") { transitive = false }
     localRuntime("com.alexthw.not_enough_glyphs:not_enough_glyphs-${minecraft_version}:${neg_version}") { transitive = false }
+
+    compileOnly "curse.maven:ars-controle-1061812:7534518"
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
